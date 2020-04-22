@@ -1,25 +1,14 @@
 ﻿using algorithms.MapRepresentation;
 using algorithms.PathFinding;
-using algos.Image;
-using System;
-using System.Windows.Forms;
+using FluentAssertions;
+using Xunit;
 
-namespace algos
+namespace tests.PathFinding
 {
-    public partial class Main : Form
+    public class FloodFillTests
     {
-        public Main()
-        {
-            InitializeComponent();
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            RenderAStarVisualization();
-            RenderFloodFillVisualization();
-        }
-
-        private void RenderAStarVisualization()
+        [Fact]
+        public void Given_FloodFill_When_FillingValidRegion_Then_EntireRegionIsFilled()
         {
             var map = Map.FromString(new string[]
             {
@@ -40,16 +29,23 @@ namespace algos
                 "       ##    ##"
             });
 
-            var pf = new AStar(map);
+            var ff = new FloodFill(map);
+            var start = new Location(0, 0);
 
-            var path = pf.FindPath(new Location(0, 0), new Location(12, 14));
+            var filled = ff.GetRegion(start);
 
-            var mv = new MapVisualizer(map);
+            filled[0, 0].Should().Be(true);
+            filled[3, 10].Should().Be(true);
 
-            pictureBox1.Image = mv.Render(path);
+            // Not part of the original region
+            filled[8, 6].Should().Be(false);
+
+            // Not traversable
+            filled[4, 0].Should().Be(false);
         }
 
-        private void RenderFloodFillVisualization()
+        [Fact]
+        public void Given_FloodFill_When_GettingRegionSize_Then_CorrectSizeReturned()
         {
             var map = Map.FromString(new string[]
             {
@@ -72,11 +68,13 @@ namespace algos
 
             var ff = new FloodFill(map);
 
-            var overlay = ff.GetRegion(new Location(0, 0));
+            var size = ff.GetRegionSize(new Location(0, 0));
 
-            var mv = new MapVisualizer(map);
+            size.Should().Be(124);
 
-            pictureBox2.Image = mv.Render(overlay);
+            var size2 = ff.GetRegionSize(new Location(8, 6));
+
+            size2.Should().Be(3);
         }
     }
 }
