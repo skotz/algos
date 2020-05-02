@@ -21,7 +21,7 @@ namespace algos
 
         private void RenderAStarVisualization()
         {
-            var map = Map.FromString(new string[]
+            var map = Board.FromString(new string[]
             {
                 "    ##  ##   ##",
                 "##           ##",
@@ -51,7 +51,7 @@ namespace algos
 
         private void RenderFloodFillVisualization()
         {
-            var map = Map.FromString(new string[]
+            var map = Board.FromString(new string[]
             {
                 "    ##  ##   ##",
                 "##           ##",

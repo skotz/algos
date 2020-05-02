@@ -6,11 +6,11 @@ namespace algorithms.PathFinding
 {
     public class AStar
     {
-        private Map _map;
+        private IBoard _map;
         private int _width;
         private int _height;
 
-        public AStar(Map map)
+        public AStar(IBoard map)
         {
             _map = map;
             _width = map.Width;

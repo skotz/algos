@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapRepresentation\IBoard.cs" />
+    <Compile Include="MapRepresentation\IGame.cs" />
     <Compile Include="MapRepresentation\Location.cs" />
-    <Compile Include="MapRepresentation\Map.cs" />
+    <Compile Include="MapRepresentation\Board.cs" />
     <Compile Include="MapRepresentation\MoveDelta.cs" />
+    <Compile Include="MapRepresentation\Tile.cs" />
     <Compile Include="PathFinding\AStar.cs" />
     <Compile Include="PathFinding\FloodFill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

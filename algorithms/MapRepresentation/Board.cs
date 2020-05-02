@@ -2,11 +2,11 @@
 
 namespace algorithms.MapRepresentation
 {
-    public class Map
+    public class Board : IBoard
     {
         private List<MoveDelta> moveDeltas;
 
-        public bool this[int x, int y]
+        public Tile this[int x, int y]
         {
             get
             {
@@ -18,17 +18,17 @@ namespace algorithms.MapRepresentation
             }
         }
 
-        public bool[,] Tiles { get; set; }
+        public Tile[,] Tiles { get; set; }
 
         public int Width { get; set; }
 
         public int Height { get; set; }
 
-        public Map(int width, int height)
+        public Board(int width, int height)
         {
             Width = width;
             Height = height;
-            Tiles = new bool[width, height];
+            Tiles = new Tile[width, height];
 
             moveDeltas = new List<MoveDelta>()
             {
@@ -46,7 +46,7 @@ namespace algorithms.MapRepresentation
 
         public bool IsTraversable(int x, int y)
         {
-            return x >= 0 && x < Width && y >= 0 && y < Height && Tiles[x, y];
+            return x >= 0 && x < Width && y >= 0 && y < Height && Tiles[x, y].Traversable;
         }
 
         public List<Location> GetNeighbors(Location location)
@@ -69,21 +69,21 @@ namespace algorithms.MapRepresentation
             return neighbors;
         }
 
-        public static Map FromString(string[] map, char traversable = ' ')
+        public static Board FromString(string[] map, char traversable = ' ')
         {
             var w = map[0].Length;
             var h = map.Length;
-            var tiles = new bool[w, h];
+            var tiles = new Tile[w, h];
 
             for (int y = 0; y < h; y++)
             {
                 for (int x = 0; x < w; x++)
                 {
-                    tiles[x, y] = map[y][x] == traversable;
+                    tiles[x, y] = new Tile(map[y][x] == traversable);
                 }
             }
 
-            return new Map(w, h)
+            return new Board(w, h)
             {
                 Tiles = tiles
             };

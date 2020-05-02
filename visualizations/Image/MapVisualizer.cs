@@ -22,9 +22,9 @@ namespace algos.Image
 
         private static SolidBrush orange = new SolidBrush(Color.FromArgb(215, 119, 43));
 
-        private Map _map;
+        private Board _map;
 
-        public MapVisualizer(Map map)
+        public MapVisualizer(Board map)
         {
             _map = map;
         }
@@ -44,7 +44,7 @@ namespace algos.Image
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        if (!_map[x, y])
+                        if (!_map[x, y].Traversable)
                         {
                             g.FillRectangle(green, x * tileSize, y * tileSize, tileSize, tileSize);
                         }
@@ -78,7 +78,7 @@ namespace algos.Image
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        if (!_map[x, y])
+                        if (!_map[x, y].Traversable)
                         {
                             g.FillRectangle(green, x * tileSize, y * tileSize, tileSize, tileSize);
                         }
