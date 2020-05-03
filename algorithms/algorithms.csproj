@@ -51,6 +51,7 @@
     <Compile Include="PathFinding\AStar.cs" />
     <Compile Include="PathFinding\FloodFill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeSearching\MiniMax.cs" />
     <Compile Include="TreeSearching\MonteCarloTreeSearch.cs" />
     <Compile Include="TreeSearching\SearchCancellationToken.cs" />
     <Compile Include="TreeSearching\SearchResult.cs" />

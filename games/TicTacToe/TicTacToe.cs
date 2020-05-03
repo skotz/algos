@@ -1,5 +1,4 @@
 ﻿using algorithms.MapRepresentation;
-using System;
 using System.Collections.Generic;
 
 namespace games.TicTacToe
@@ -104,6 +103,30 @@ namespace games.TicTacToe
             }
 
             return ttt;
+        }
+
+        public int Evaluate()
+        {
+            var score = 0;
+
+            // Value winning
+            var winner = GetWinner();
+            score += winner == Player.One ? 100 : 0;
+            score += winner == Player.Two ? -100 : 0;
+
+            // Value winning fast
+            for (int y = 0; y < 3; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    if (Board[x, y] == Player.None)
+                    {
+                        score++;
+                    }
+                }
+            }
+
+            return score;
         }
     }
 }

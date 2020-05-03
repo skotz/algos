@@ -18,5 +18,7 @@ namespace algorithms.MapRepresentation
         void MakeMove(Move move);
 
         Player GetWinner();
+
+        int Evaluate();
     }
 }
