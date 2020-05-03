@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\MapVisualizer.cs" />
+    <Compile Include="OceanNavigator\TicTacToeVisualizer.cs" />
+    <Compile Include="OceanNavigator\OceanNavigatorVisualizer.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +88,10 @@
     <ProjectReference Include="..\algorithms\algorithms.csproj">
       <Project>{F21B493C-7511-42E9-8923-2BA05677879A}</Project>
       <Name>algorithms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\games\games.csproj">
+      <Project>{31bab158-c7aa-4029-9211-c3944de60e7d}</Project>
+      <Name>games</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

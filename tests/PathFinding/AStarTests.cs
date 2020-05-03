@@ -11,7 +11,7 @@ namespace tests.PathFinding
         [Fact]
         public void Given_AStar_When_SearchingForPathThatExists_Then_ShortestPathReturned()
         {
-            var map = Board.FromString(new string[]
+            var map = OceanNavigator.FromString(new string[]
             {
                 "    ##  ##   ##",
                 "##           ##",
@@ -42,7 +42,7 @@ namespace tests.PathFinding
         [Fact]
         public void Given_AStar_When_SearchingForPathThatDoesNotExist_Then_EmptyListReturned()
         {
-            var map = Board.FromString(new string[]
+            var map = OceanNavigator.FromString(new string[]
             {
                 "### #",
                 "    #",
@@ -63,7 +63,7 @@ namespace tests.PathFinding
         [Fact]
         public void Given_AStar_When_SearchingForPath_Then_FirstLocationInPathIsStartTile()
         {
-            var map = Board.FromString(new string[]
+            var map = OceanNavigator.FromString(new string[]
             {
                 "### #",
                 "    #",

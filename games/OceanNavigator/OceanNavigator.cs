@@ -2,7 +2,7 @@
 
 namespace algorithms.MapRepresentation
 {
-    public class Board : IBoard
+    public class OceanNavigator : IBoard
     {
         private List<MoveDelta> moveDeltas;
 
@@ -24,7 +24,7 @@ namespace algorithms.MapRepresentation
 
         public int Height { get; set; }
 
-        public Board(int width, int height)
+        public OceanNavigator(int width, int height)
         {
             Width = width;
             Height = height;
@@ -69,7 +69,7 @@ namespace algorithms.MapRepresentation
             return neighbors;
         }
 
-        public static Board FromString(string[] map, char traversable = ' ')
+        public static OceanNavigator FromString(string[] map, char traversable = ' ')
         {
             var w = map[0].Length;
             var h = map.Length;
@@ -83,7 +83,7 @@ namespace algorithms.MapRepresentation
                 }
             }
 
-            return new Board(w, h)
+            return new OceanNavigator(w, h)
             {
                 Tiles = tiles
             };

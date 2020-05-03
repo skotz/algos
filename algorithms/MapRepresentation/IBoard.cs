@@ -2,6 +2,9 @@
 
 namespace algorithms.MapRepresentation
 {
+    /// <summary>
+    /// Represents a game board where actors move relative to their current location (e.g., a character on a map)
+    /// </summary>
     public interface IBoard
     {
         int Width { get; set; }

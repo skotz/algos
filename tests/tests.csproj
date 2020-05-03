@@ -72,6 +72,7 @@
     <Compile Include="PathFinding\AStarTests.cs" />
     <Compile Include="PathFinding\FloodFillTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeSearching\MonteCarloTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -84,7 +85,12 @@
       <Project>{F21B493C-7511-42E9-8923-2BA05677879A}</Project>
       <Name>algorithms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\games\games.csproj">
+      <Project>{31bab158-c7aa-4029-9211-c3944de60e7d}</Project>
+      <Name>games</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

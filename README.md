@@ -7,8 +7,8 @@ Current
 
 - A*
 - Flood Fill
+- Monte Carlo Tree Search
 
 Planned
 
-- Monte Carlo Tree Search
 - MiniMax with Alpha-Beta Pruning

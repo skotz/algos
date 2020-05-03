@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace algos.Image
 {
-    internal class MapVisualizer
+    internal class OceanNavigatorVisualizer
     {
         private const int tileSize = 32;
 
@@ -22,9 +22,9 @@ namespace algos.Image
 
         private static SolidBrush orange = new SolidBrush(Color.FromArgb(215, 119, 43));
 
-        private Board _map;
+        private OceanNavigator _map;
 
-        public MapVisualizer(Board map)
+        public OceanNavigatorVisualizer(OceanNavigator map)
         {
             _map = map;
         }
@@ -40,6 +40,10 @@ namespace algos.Image
 
             using (var g = Graphics.FromImage(b))
             {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
                 for (int y = 0; y < _map.Height; y++)
                 {
                     for (int x = 0; x < _map.Width; x++)
@@ -74,6 +78,10 @@ namespace algos.Image
 
             using (var g = Graphics.FromImage(b))
             {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
                 for (int y = 0; y < _map.Height; y++)
                 {
                     for (int x = 0; x < _map.Width; x++)

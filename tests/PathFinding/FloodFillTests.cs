@@ -10,7 +10,7 @@ namespace tests.PathFinding
         [Fact]
         public void Given_FloodFill_When_FillingValidRegion_Then_EntireRegionIsFilled()
         {
-            var map = Board.FromString(new string[]
+            var map = OceanNavigator.FromString(new string[]
             {
                 "    ##  ##   ##",
                 "##           ##",
@@ -47,7 +47,7 @@ namespace tests.PathFinding
         [Fact]
         public void Given_FloodFill_When_GettingRegionSize_Then_CorrectSizeReturned()
         {
-            var map = Board.FromString(new string[]
+            var map = OceanNavigator.FromString(new string[]
             {
                 "    ##  ##   ##",
                 "##           ##",
