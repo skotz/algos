@@ -58,6 +58,7 @@ namespace algorithms.TreeSearching
         {
             if (depth <= 0)
             {
+                evaluations++;
                 return new MiniMaxNode(state.Evaluate());
             }
 
@@ -69,6 +70,7 @@ namespace algorithms.TreeSearching
             var moves = state.GetAllMoves();
             if (moves.Count == 0)
             {
+                evaluations++;
                 return new MiniMaxNode(state.Evaluate());
             }
 

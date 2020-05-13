@@ -1,6 +1,5 @@
 ﻿using algorithms.MapRepresentation;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace algorithms.PathFinding
 {
@@ -26,6 +25,9 @@ namespace algorithms.PathFinding
             var openSet = new Queue<Location>();
             openSet.Enqueue(start);
 
+            var openSetFast = new bool[_width, _height];
+            openSetFast[start.X, start.Y] = true;
+
             for (int y = 0; y < _height; y++)
             {
                 for (int x = 0; x < _width; x++)
@@ -40,6 +42,7 @@ namespace algorithms.PathFinding
             while (openSet.Count > 0)
             {
                 var current = openSet.Dequeue();
+                openSetFast[current.X, current.Y] = false;
 
                 // If we found a path from the start to the end, reconstruct the path and return it
                 if (current.X == end.X && current.Y == end.Y)
@@ -76,9 +79,10 @@ namespace algorithms.PathFinding
                     var tentative_gScore = gScore[current.X, current.Y] + 1;
 
                     // Discover a new node
-                    if (!openSet.Any(s => s.X == neighbor.X && s.Y == neighbor.Y))
+                    if (!openSetFast[neighbor.X, neighbor.Y])
                     {
                         openSet.Enqueue(neighbor);
+                        openSetFast[neighbor.X, neighbor.Y] = true;
                     }
                     else if (tentative_gScore >= gScore[neighbor.X, neighbor.Y])
                     {
