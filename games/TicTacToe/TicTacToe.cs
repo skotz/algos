@@ -105,26 +105,14 @@ namespace games.TicTacToe
             return ttt;
         }
 
-        public int Evaluate()
+        public int Evaluate(int depth)
         {
             var score = 0;
 
-            // Value winning
+            // Value winning (discounted by search depth to prefer faster wins)
             var winner = GetWinner();
-            score += winner == Player.One ? 100 : 0;
-            score += winner == Player.Two ? -100 : 0;
-
-            // Value winning fast
-            for (int y = 0; y < 3; y++)
-            {
-                for (int x = 0; x < 3; x++)
-                {
-                    if (Board[x, y] == Player.None)
-                    {
-                        score++;
-                    }
-                }
-            }
+            score += winner == Player.One ? 100 - depth : 0;
+            score += winner == Player.Two ? -(100 - depth) : 0;
 
             return score;
         }

@@ -18,7 +18,7 @@ namespace algorithms.TreeSearching
             evaluations = 0;
             cancel = new SearchCancellationToken(() => false);
 
-            var best = MiniMaxAlphaBeta(state, depth, int.MinValue, int.MaxValue);
+            var best = MiniMaxAlphaBeta(state, 0, depth, int.MinValue, int.MaxValue);
 
             return new SearchResult
             {
@@ -34,12 +34,12 @@ namespace algorithms.TreeSearching
             evaluations = 0;
             cancel = token;
 
-            var best = MiniMaxAlphaBeta(state, 2, int.MinValue, int.MaxValue);
+            var best = MiniMaxAlphaBeta(state, 0, 2, int.MinValue, int.MaxValue);
 
             // Iterative deepening
             for (int i = 4; i < 100 && !cancel.Cancelled; i++)
             {
-                var test = MiniMaxAlphaBeta(state, i, int.MinValue, int.MaxValue);
+                var test = MiniMaxAlphaBeta(state, 0, i, int.MinValue, int.MaxValue);
                 if (!test.Cancelled)
                 {
                     best = test;
@@ -54,12 +54,12 @@ namespace algorithms.TreeSearching
             };
         }
 
-        private MiniMaxNode MiniMaxAlphaBeta(IState state, int depth, int alpha, int beta)
+        private MiniMaxNode MiniMaxAlphaBeta(IState state, int depth, int maxDepth, int alpha, int beta)
         {
-            if (depth <= 0)
+            if (depth >= maxDepth)
             {
                 evaluations++;
-                return new MiniMaxNode(state.Evaluate());
+                return new MiniMaxNode(state.Evaluate(depth));
             }
 
             if (cancel.Cancelled)
@@ -71,7 +71,7 @@ namespace algorithms.TreeSearching
             if (moves.Count == 0)
             {
                 evaluations++;
-                return new MiniMaxNode(state.Evaluate());
+                return new MiniMaxNode(state.Evaluate(depth));
             }
 
             var best = new MiniMaxNode(state.PlayerToMove == Player.One ? int.MinValue : int.MaxValue);
@@ -81,7 +81,7 @@ namespace algorithms.TreeSearching
                 var copy = state.Clone();
                 copy.MakeMove(move);
 
-                var test = MiniMaxAlphaBeta(copy, depth - 1, alpha, beta);
+                var test = MiniMaxAlphaBeta(copy, depth + 1, maxDepth, alpha, beta);
 
                 if (test.Cancelled)
                 {

@@ -19,6 +19,6 @@ namespace algorithms.MapRepresentation
 
         Player GetWinner();
 
-        int Evaluate();
+        int Evaluate(int depth);
     }
 }
