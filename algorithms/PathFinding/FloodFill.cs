@@ -33,34 +33,28 @@ namespace algorithms.PathFinding
             size = 0;
             filled = new bool[_width, _height];
 
+            if (!_map.IsTraversable(origin))
+            {
+                return;
+            }
+
             var stack = new Stack<Location>();
             stack.Push(origin);
 
             while (stack.Count > 0)
             {
-                var p = stack.Pop();
-                if (p.X >= 0 && p.X < _width && p.Y >= 0 && p.Y < _height)
-                {
-                    if (!filled[p.X, p.Y] && _map.IsTraversable(p.X, p.Y))
-                    {
-                        filled[p.X, p.Y] = true;
-                        size++;
+                var point = stack.Pop();
 
-                        if (_map.IsTraversable(p.X + 1, p.Y))
+                if (!filled[point.X, point.Y])
+                {
+                    filled[point.X, point.Y] = true;
+                    size++;
+
+                    foreach (var neighbor in _map.GetNeighbors(point))
+                    {
+                        if (_map.IsTraversable(neighbor))
                         {
-                            stack.Push(new Location(p.X + 1, p.Y));
-                        }
-                        if (_map.IsTraversable(p.X - 1, p.Y))
-                        {
-                            stack.Push(new Location(p.X - 1, p.Y));
-                        }
-                        if (_map.IsTraversable(p.X, p.Y + 1))
-                        {
-                            stack.Push(new Location(p.X, p.Y + 1));
-                        }
-                        if (_map.IsTraversable(p.X, p.Y - 1))
-                        {
-                            stack.Push(new Location(p.X, p.Y - 1));
+                            stack.Push(neighbor);
                         }
                     }
                 }
