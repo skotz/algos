@@ -21,6 +21,7 @@ namespace algos
         private void Main_Load(object sender, EventArgs e)
         {
             RenderAStarVisualization();
+            RenderVoronoiVisualization();
             RenderFloodFillVisualization();
             RenderMonteCarloVisualization();
         }
@@ -53,6 +54,42 @@ namespace algos
             var mv = new OceanNavigatorVisualizer(map);
 
             pictureBox1.Image = mv.Render(path);
+        }
+
+        private void RenderVoronoiVisualization()
+        {
+            var map = OceanNavigator.FromString(new string[]
+            {
+                "    ##  ##   ##",
+                "##           ##",
+                "#### ##  ##   #",
+                "  ## ######   #",
+                "      ### ##   ",
+                " ##   ### ###  ",
+                " ###  ## ####  ",
+                "#######  ####  ",
+                "##   ####     #",
+                "       ##   ###",
+                "               ",
+                "               ",
+                "#####    ##   #",
+                "#####  ####  ##",
+                "       ##    ##"
+            });
+
+            var voronoi = new Voronoi(map);
+
+            voronoi.Add(Player.One, 3, 1);
+            voronoi.Add(Player.One, 2, 14);
+
+            voronoi.Add(Player.Two, 6, 10);
+            voronoi.Add(Player.Two, 12, 11);
+
+            var grid = voronoi.Fill();
+
+            var mv = new OceanNavigatorVisualizer(map);
+
+            pictureBox4.Image = mv.Render(grid);
         }
 
         private void RenderFloodFillVisualization()

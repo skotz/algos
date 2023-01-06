@@ -50,6 +50,8 @@
     <Compile Include="MapRepresentation\Tile.cs" />
     <Compile Include="PathFinding\AStar.cs" />
     <Compile Include="PathFinding\FloodFill.cs" />
+    <Compile Include="PathFinding\Voronoi.cs" />
+    <Compile Include="PathFinding\VoronoiQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeSearching\BeamSearch.cs" />
     <Compile Include="TreeSearching\MiniMax.cs" />

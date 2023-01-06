@@ -4,6 +4,7 @@
     {
         None,
         One,
-        Two
+        Two,
+        Both
     }
 }

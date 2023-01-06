@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PathFinding\VoronoiTests.cs" />
     <Compile Include="PathFinding\AStarTests.cs" />
     <Compile Include="PathFinding\FloodFillTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

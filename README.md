@@ -5,6 +5,7 @@ These are algorithms I use all the time. Here they are with unit tests and examp
 
 - A*
 - Flood Fill
+- Voronoi Diagram
 - Monte Carlo Tree Search
 - MiniMax with Alpha-Beta Pruning
-- Breadth-First Beam Search
+- Beam Search (Breadth-First)
