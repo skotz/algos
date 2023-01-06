@@ -49,6 +49,12 @@ namespace algos
 
             var pf = new AStar(map);
 
+            pf.GetDistance = (board, source, dest) =>
+            {
+                // Prefer paths closer to the center by making it slightly more costly to move to tiles further away from the center. We'll still find the shortest possible path
+                return 1000 + dest.ManhattanDistanceTo(board.Width / 2, board.Height / 2);
+            };
+
             var path = pf.FindPath(new Location(0, 0), new Location(12, 14));
 
             var mv = new OceanNavigatorVisualizer(map);

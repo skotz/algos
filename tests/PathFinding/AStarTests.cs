@@ -84,5 +84,45 @@ namespace tests.PathFinding
             path.Last().X.Should().Be(3);
             path.Last().Y.Should().Be(0);
         }
+
+        [Fact]
+        public void Given_AStar_When_SearchingWithCustomEdgeWeights_Then_CorrectPathFound()
+        {
+            var map = OceanNavigator.FromString(new string[]
+            {
+                "    ##  ##   ##",
+                "##           ##",
+                "#### ##  ##   #",
+                "  ## ######   #",
+                "      ### ##   ",
+                " ##   ### ###  ",
+                " ###  ## ####  ",
+                "#######  ####  ",
+                "##   ####     #",
+                "       ##   ###",
+                "               ",
+                "               ",
+                "#####    ##   #",
+                "#####  ####  ##",
+                "       ##    ##"
+            });
+
+            var pf = new AStar(map);
+
+            pf.GetDistance = (board, source, dest) =>
+            {
+                // Prefer paths closer to the center
+                return 1000 + dest.ManhattanDistanceTo(board.Width / 2, board.Height / 2);
+            };
+
+            var start = new Location(0, 0);
+            var end = new Location(12, 14);
+
+            var path = pf.FindPath(start, end);
+
+            path.Count.Should().Be(31);
+
+            path.Should().Contain(p => p.X == 11 && p.Y == 3);
+        }
     }
 }

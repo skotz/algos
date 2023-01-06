@@ -1,4 +1,6 @@
-﻿namespace algorithms.MapRepresentation
+﻿using System;
+
+namespace algorithms.MapRepresentation
 {
     public class Location
     {
@@ -10,6 +12,26 @@
         {
             X = x;
             Y = y;
+        }
+
+        public double EuclideanDistanceTo(int x, int y)
+        {
+            return Math.Sqrt((x - X) * (x - X) + (y - Y) * (y - Y));
+        }
+
+        public int ManhattanDistanceTo(int x, int y)
+        {
+            return Math.Abs(x - X) + Math.Abs(y - Y);
+        }
+
+        public double EuclideanDistanceTo(Location other)
+        {
+            return EuclideanDistanceTo(other.X, other.Y);
+        }
+
+        public int ManhattanDistanceTo(Location other)
+        {
+            return ManhattanDistanceTo(other.X, other.Y);
         }
     }
 }

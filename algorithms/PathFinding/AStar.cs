@@ -9,6 +9,8 @@ namespace algorithms.PathFinding
         private int _width;
         private int _height;
 
+        public GetDistanceDelegate GetDistance { get; set; }
+
         public AStar(IBoard map)
         {
             _map = map;
@@ -76,7 +78,8 @@ namespace algorithms.PathFinding
                     }
 
                     // The distance from start to a neighbor
-                    var tentative_gScore = gScore[current.X, current.Y] + 1;
+                    var edge_weight = GetDistance?.Invoke(_map, current, neighbor) ?? 1;
+                    var tentative_gScore = gScore[current.X, current.Y] + edge_weight;
 
                     // Discover a new node
                     if (!openSetFast[neighbor.X, neighbor.Y])
